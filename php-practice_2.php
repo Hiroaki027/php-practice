@@ -86,7 +86,7 @@ class Student
     }
 
     public function attend($subject)
-    {   
+    {
         $this->studentSubject = $subject;
         echo $this->studentName.'は'.$this->studentSubject.'の授業に参加しました。学籍番号:'.$this->studentId;
     }

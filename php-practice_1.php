@@ -12,6 +12,7 @@ echo "\n";
 echo $num / 2;
 
 // Q3 日付操作
+date_default_timezone_set('Asia/Tokyo');
 echo '現在の時刻は、'.date("Y年m月d日 H時i分s秒").'です。'
 
 // Q4 条件分岐-1 if文
@@ -25,12 +26,7 @@ if ($device == 'windows' || $device == 'mac') {
 
 // Q5 条件分岐-2 三項演算子
 $age = 5;
-
-if ($age >= 18) {
-    $message = '成人です。';
-} else {
-    $message = '未成年です。';
-}
+$message = ($age > 18 )? '成人です。' : '未成年です。';
 
 echo  $message;
 
@@ -42,25 +38,25 @@ echo $prefactures[3].'と'.$prefactures[4].'は関東地方の都道府県です
 // Q7 連想配列-1
 $prefactures = ['東京都' => '新宿区','神奈川県' => '横浜市','千葉県' => '千葉市','埼玉県' => 'さいたま市','栃木県' => '宇都宮市','群馬県' => '前橋氏','茨城県' => '水戸市'];
 
-foreach ($prefactures as $y) {
-    echo $y,"\n";
+foreach ($prefactures as $capital) {
+    echo $capital,"\n";
 }
 // Q8 連想配列-2
 $prefactures = ['東京都' => '新宿区','神奈川県' => '横浜市','千葉県' => '千葉市','埼玉県' => 'さいたま市','栃木県' => '宇都宮市','群馬県' => '前橋氏','茨城県' => '水戸市'];
 
-foreach ($prefactures as $x => $y) {
-    if ($x =='埼玉県') {
-        echo $x.'の県庁所在地は、'.$y.'です。';
+foreach ($prefactures as $prefacture => $capital) {
+    if ($prefacture =='埼玉県') {
+        echo $prefacture.'の県庁所在地は、'.$capital.'です。';
     }
 }
 // Q9 連想配列-3
 $prefactures = ['東京都' => '新宿区','神奈川県' => '横浜市','千葉県' => '千葉市','埼玉県' => 'さいたま市','栃木県' => '宇都宮市','群馬県' => '前橋氏','茨城県' => '水戸市','大阪府','愛知県'];
 
-foreach ($prefactures as $x => $y) {
-    if ($y == '大阪府' || $y == '愛知県') {
-        echo $y.'は関東地方ではありません。',"\n";
+foreach ($prefactures as $prefacture => $capital) {
+    if ($capital == '大阪府' || $capital == '愛知県') {
+        echo $capital.'は関東地方ではありません。',"\n";
     }else {
-        echo $x.'の県庁所在地は、'.$y.'です。',"\n";
+        echo $prefacture.'の県庁所在地は、'.$capital.'です。',"\n";
     }
 }
 
@@ -72,13 +68,14 @@ hello('馬場');
 hello('藤縄');
 
 // Q11 関数-2
-function calcTaxInPrice($price = 1000){
+function calcTaxInPrice($price){
 
   $taxInPrice = $price * 1.1;
   return $price.'円の商品の税込み価格は'.$taxInPrice.'円です。';
 }
 
-$message = calcTaxInPrice();
+$message = calcTaxInPrice(1000);
+echo $message;
 
 // Q12 関数とif文
 function distinguishNum($num){
@@ -86,7 +83,7 @@ function distinguishNum($num){
   $number = $num % 2;
   if ($number == 0) {
       return $num.'は偶数です。';
-  }elseif ($number !== 0) {
+  }else{
       return $num.'は奇数です。';
   }
 }
