@@ -11,7 +11,7 @@ for ($i = 1; $i <= 100; $i++) {
   }else {
       echo  $i, "\n";
   }
-}
+};
 
 // Q2 多次元連想配列
 問題１
@@ -45,23 +45,21 @@ foreach ($personalInfos as $keys => $values){
 問題３
 
 $ageList = [25, 30, 18];
-foreach ($personalInfos as $keys => &$values) {
+foreach ($personalInfos as $keys => $values) {
     $personalInfos[$keys]['age'] = $ageList[$keys];
 }
-unset($values);
 var_dump($personalInfos);
 
 // Q3 オブジェクト-1
 class Student
 {
-    public $studentId;
-    public $studentName;
+    public $studentId
+    public $studentName
 
     public function __construct($id, $name)
     {
         $this->studentId = $id;
         $this->studentName = $name;
-        echo '学籍番号'.$this->studentId.'番の生徒は'.$this->studentName.'です。';
     }
 
     public function attend()
@@ -71,6 +69,7 @@ class Student
 }
 
 $student = new Student(129,'山田');
+echo '学籍番号'.$student->studentId.'番の生徒は'.$student->studentName.'です。';
 
 // Q4 オブジェクト-2
 class Student
@@ -87,7 +86,7 @@ class Student
 
     public function attend($subject)
     {
-        echo $this->studentName.'は'.$this->studentSubject.'の授業に参加しました。学籍番号:'.$this->studentId;
+        echo $this->studentName.'は'.$subject.'の授業に参加しました。学籍番号:'.$this->studentId;
     }
 }
 
@@ -102,8 +101,6 @@ echo $date->modify('-1 months')->format('Y-m-d');
 問題２
 $dateOld = new DateTime('1992-04-25');
 $dateToday = new DateTime();
-$diff = $dateOld->diff($dateToday);
-echo 'あの日から'.$diff->format('%a日').'経過しました。';
-?>
-
+$diff = $dateOld->diff($dateToday)->format('%a日');
+echo 'あの日から'.$diff.'経過しました。';
 ?>
