@@ -45,11 +45,11 @@ foreach ($personalInfos as $keys => $values){
 問題３
 
 $ageList = [25, 30, 18];
-foreach ($personalInfos as $keys => $values) {
-    $values['age'] = $ageList[$keys];
-    $personalInfos =& $values;
-    var_dump($personalInfos);
+foreach ($personalInfos as $keys => &$values) {
+    $personalInfos[$keys]['age'] = $ageList[$keys];
 }
+unset($values);
+var_dump($personalInfos);
 
 // Q3 オブジェクト-1
 class Student
@@ -87,7 +87,6 @@ class Student
 
     public function attend($subject)
     {
-        $this->studentSubject = $subject;
         echo $this->studentName.'は'.$this->studentSubject.'の授業に参加しました。学籍番号:'.$this->studentId;
     }
 }
